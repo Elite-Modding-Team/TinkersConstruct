@@ -58,8 +58,7 @@ public class Mattock extends AoeToolCore {
 
     addCategory(Category.HARVEST);
 
-    // unused, but we give mattock its own tool class
-    this.setHarvestLevel("mattock", 0);
+    this.setHarvestLevel("mattock", 0); // Unused, but we give the mattock its own tool class
     this.setHarvestLevel("axe", 0);
     this.setHarvestLevel("shovel", 0);
   }
