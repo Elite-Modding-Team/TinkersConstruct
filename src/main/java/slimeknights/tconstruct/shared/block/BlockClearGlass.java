@@ -10,7 +10,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 import slimeknights.mantle.block.BlockConnectedTexture;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
+
+import java.util.Random;
 
 public class BlockClearGlass extends BlockConnectedTexture {
 
@@ -22,6 +25,20 @@ public class BlockClearGlass extends BlockConnectedTexture {
     this.setSoundType(SoundType.GLASS);
 
     this.setCreativeTab(TinkerRegistry.tabGeneral);
+  }
+
+  @Override
+  public int quantityDropped(Random random)
+  {
+    if(Config.clearGlassSilkTouch)
+      return 0;
+    else return 1;
+  }
+
+  @Override
+  protected boolean canSilkHarvest()
+  {
+    return Config.clearGlassSilkTouch;
   }
 
   @Nonnull

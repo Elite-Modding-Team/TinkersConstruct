@@ -44,6 +44,7 @@ public final class Config {
   public static boolean leatherDryingRecipe = true;
   public static boolean gravelFlintRecipe = true;
   public static double oreToIngotRatio = 2;
+  public static int despawnProjectile = 1200;
   public static boolean matchVanillaSlimeblock = false;
   public static boolean limitPiggybackpack = false;
   public static boolean beheadingAffectsWitherSkulls = true;
@@ -146,12 +147,12 @@ public final class Config {
       Gameplay = configFile.getCategory(cat);
 
       prop = configFile.get(cat, "spawnWithBook", spawnWithBook);
-      prop.setComment("Players who enter the world for the first time get a Tinkers' Book");
+      prop.setComment("Players who enter the world for the first time get a Tinkers' Book.");
       spawnWithBook = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "reuseStencils", reuseStencil);
-      prop.setComment("Allows to reuse stencils in the stencil table to turn them into other stencils");
+      prop.setComment("Allows to reuse stencils in the stencil table to turn them into other stencils.");
       reuseStencil = prop.getBoolean();
       propOrder.add(prop.getName());
 
@@ -167,13 +168,13 @@ public final class Config {
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "allowBrickCasting", castableBricks);
-      prop.setComment("Allows the creation of bricks from molten clay");
+      prop.setComment("Allows the creation of bricks from molten clay.");
       castableBricks = prop.getBoolean();
       prop.setRequiresMcRestart(true);
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "AutosmeltFortuneInteraction", autosmeltlapis);
-      prop.setComment("Fortune increases drops after harvesting a block with autosmelt");
+      prop.setComment("Fortune increases drops after harvesting a block with autosmelt.");
       autosmeltlapis = prop.getBoolean();
       propOrder.add(prop.getName());
 
@@ -183,7 +184,7 @@ public final class Config {
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "registerAllItems", forceRegisterAll);
-      prop.setComment("Enables all items, even if the Module needed to obtain them is not active");
+      prop.setComment("Enables all items, even if the Module needed to obtain them is not active.");
       forceRegisterAll = prop.getBoolean();
       prop.setRequiresMcRestart(true);
       propOrder.add(prop.getName());
@@ -195,13 +196,13 @@ public final class Config {
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "addLeatherDryingRecipe", leatherDryingRecipe);
-      prop.setComment("Adds a recipe that allows you to get leather from drying cooked meat");
+      prop.setComment("Adds a recipe that allows you to get leather from drying cooked meat.");
       leatherDryingRecipe = prop.getBoolean();
       prop.setRequiresMcRestart(true);
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "addFlintRecipe", gravelFlintRecipe);
-      prop.setComment("Adds a recipe that allows you to craft 3 gravel into a flint");
+      prop.setComment("Adds a recipe that allows you to craft 3 gravel into a flint.");
       gravelFlintRecipe = prop.getBoolean();
       prop.setRequiresMcRestart(true);
       propOrder.add(prop.getName());
@@ -214,7 +215,7 @@ public final class Config {
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "matchVanillaSlimeblock", matchVanillaSlimeblock);
-      prop.setComment("If true, requires slimeballs in the vanilla slimeblock recipe to match in color, otherwise gives a pink slimeblock");
+      prop.setComment("If true, requires slimeballs in the vanilla slimeblock recipe to match in color, otherwise gives a pink slimeblock.");
       matchVanillaSlimeblock = prop.getBoolean();
       prop.setRequiresMcRestart(true);
       propOrder.add(prop.getName());
@@ -224,9 +225,19 @@ public final class Config {
       limitPiggybackpack = prop.getBoolean();
       propOrder.add(prop.getName());
 
+      prop = configFile.get(cat, "clearGlassSilkTouch", clearGlassSilkTouch);
+      prop.setComment("If true, clear glass can only be harvested with silk touch like regular glass.");
+      clearGlassSilkTouch = prop.getBoolean();
+      propOrder.add(prop.getName());
+
       prop = configFile.get(cat, "beheadingAffectsWitherSkulls", beheadingAffectsWitherSkulls);
       prop.setComment("If true, the Beheading modifier increases Wither Skeleton Skull drop rates. If false, Wither Skeleton Skulls drop rates will not be affected.");
       beheadingAffectsWitherSkulls = prop.getBoolean();
+      propOrder.add(prop.getName());
+
+      prop = configFile.get(cat, "despawnProjectile", despawnProjectile);
+      prop.setComment("How many ticks projectiles are allowed on the ground until they despawn.");
+      despawnProjectile = prop.getInt();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "craftingStationBlacklist", craftingStationBlacklistArray);
@@ -242,7 +253,7 @@ public final class Config {
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "oredictMeltingIgnore", oredictMeltingIgnore);
-      prop.setComment("List of items to ignore when generating melting recipes from the crafting registry. For example, ignoring sticks allows metal pickaxes to melt down.\nFormat: oreName or modid:item[:meta]. If meta is unset, uses wildcard");
+      prop.setComment("List of items to ignore when generating melting recipes from the crafting registry. For example, ignoring sticks allows metal pickaxes to melt down.\nFormat: oreName or modid:item[:meta]. If meta is unset, uses wildcard.");
       oredictMeltingIgnore = prop.getStringList();
       propOrder.add(prop.getName());
 
@@ -259,34 +270,34 @@ public final class Config {
 
       // Slime Islands
       prop = configFile.get(cat, "generateSlimeIslands", genSlimeIslands);
-      prop.setComment("If true slime islands will generate");
+      prop.setComment("If true, slime islands will generate.");
       genSlimeIslands = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "generateIslandsInSuperflat", genIslandsInSuperflat);
-      prop.setComment("If true slime islands generate in superflat worlds");
+      prop.setComment("If true, slime islands generate in superflat worlds.");
       genIslandsInSuperflat = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "slimeIslandRate", slimeIslandsRate);
-      prop.setComment("One in every X chunks will contain a slime island");
+      prop.setComment("One in every X chunks will contain a slime island.");
       slimeIslandsRate = prop.getInt();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "magmaIslandRate", magmaIslandsRate);
-      prop.setComment("One in every X chunks will contain a magma island in the nether");
+      prop.setComment("One in every X chunks will contain a magma island in the nether.");
       magmaIslandsRate = prop.getInt();
       propOrder.add(prop.getName());
 
       configFile.renameProperty(cat, "slimeIslandBlacklist", "slimeIslandDimensions");
 
       prop = configFile.get(cat, "slimeIslandDimensions", slimeIslandDimensions);
-      prop.setComment("List of dimensions in which to enable or disable generation of slime islands");
+      prop.setComment("List of dimensions in which to enable or disable generation of slime islands.");
       slimeIslandDimensions = prop.getIntList();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "slimeIslandDimensionsIsBlacklist", slimeIslandDimensionsIsBlacklist);
-      prop.setComment("Whether the list of slime island dimensions behaves as a blacklist or a whitelist");
+      prop.setComment("Whether the list of slime island dimensions behaves as a blacklist or a whitelist.");
       slimeIslandDimensionsIsBlacklist = prop.getBoolean();
       propOrder.add(prop.getName());
 
@@ -297,17 +308,17 @@ public final class Config {
 
       // Nether ore generation
       prop = configFile.get(cat, "genCobalt", genCobalt);
-      prop.setComment("If true, cobalt ore will generate in the nether");
+      prop.setComment("If true, cobalt ore will generate in the nether.");
       genCobalt = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "genArdite", genArdite);
-      prop.setComment("If true, ardite ore will generate in the nether");
+      prop.setComment("If true, ardite ore will generate in the nether.");
       genArdite = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "cobaltRate", cobaltRate);
-      prop.setComment("Approx Ores per chunk");
+      prop.setComment("Approximate Ores per chunk.");
       cobaltRate = prop.getInt();
       propOrder.add(prop.getName());
 
@@ -327,44 +338,44 @@ public final class Config {
       configFile.renameProperty(cat, "renderTableItems", "renderInventoryInWorld");
 
       prop = configFile.get(cat, "renderInventoryInWorld", renderTableItems);
-      prop.setComment("If true all of Tinkers' blocks with contents (tables, basin, drying racks,...) will render their contents in the world");
+      prop.setComment("If true, all of Tinkers' blocks with contents (tables, basin, drying racks,...) will render their contents in the world.");
       renderTableItems = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "renderInventoryNullLayer", renderInventoryNullLayer);
-      prop.setComment("If true use a null render layer when building the models to render tables. Fixes an issue with chisel, but the config is provide in case it breaks something.");
+      prop.setComment("If true, use a null render layer when building the models to render tables. Fixes an issue with chisel, but the config is provide in case it breaks something.");
       renderInventoryNullLayer = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "extraTooltips", extraTooltips);
-      prop.setComment("If true tools will show additional info in their tooltips");
+      prop.setComment("If true, tools will show additional info in their tooltips.");
       extraTooltips = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "listAllTables", listAllTables);
-      prop.setComment("If true all variants of the different tables will be listed in creative. Set to false to only have the oak variant for all tables.");
+      prop.setComment("If true, all variants of the different tables will be listed in creative. Set to false to only have the oak variant for all tables.");
       listAllTables = prop.getBoolean();
       propOrder.add(prop.getName());
 
       configFile.renameProperty(cat, "listAllMaterials", "listAllToolMaterials");
       prop = configFile.get(cat, "listAllToolMaterials", listAllToolMaterials);
-      prop.setComment("If true all material variants of the different tools will be listed in creative. Set to false to only have the first found material for all tools (usually wood).");
+      prop.setComment("If true, all material variants of the different tools will be listed in creative. Set to false to only have the first found material for all tools (usually wood).");
       listAllToolMaterials = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "listAllPartMaterials", listAllToolMaterials); // property was split, so defailt to the value of tool materials
-      prop.setComment("If true all material variants of the different parts will be listed in creative. Set to false to only have the first found material for all parts (usually wood).");
+      prop.setComment("If true, all material variants of the different parts will be listed in creative. Set to false to only have the first found material for all parts (usually wood).");
       listAllPartMaterials = prop.getBoolean();
       propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "temperatureCelsius", temperatureCelsius);
-      prop.setComment("If true, temperatures in the smeltery and in JEI will display in celsius. If false they will use the internal units of Kelvin, which may be better for devs");
+      prop.setComment("If true, temperatures in the smeltery and in JEI will display in celsius. If false, they will use the internal units of Kelvin, which may be better for devs.");
       temperatureCelsius = prop.getBoolean();
       propOrder.add(prop.getName());
       Util.setTemperaturePref(temperatureCelsius);
 
       prop = configFile.get(cat, "enableForgeBucketModel", enableForgeBucketModel);
-      prop.setComment("If true tools will enable the forge bucket model on startup and then turn itself off. This is only there so that a fresh install gets the buckets turned on by default.");
+      prop.setComment("If true, tools will enable the forge bucket model on startup and then turn itself off. This is only there so that a fresh install gets the buckets turned on by default.");
       enableForgeBucketModel = prop.getBoolean();
       if(enableForgeBucketModel) {
         prop.set(false);

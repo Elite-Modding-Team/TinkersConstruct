@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -17,6 +18,8 @@ import slimeknights.tconstruct.library.tinkering.PartMaterialType;
 import slimeknights.tconstruct.library.tools.SwordCore;
 import slimeknights.tconstruct.library.tools.ToolNBT;
 import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.melee.TinkerMeleeWeapons;
+import slimeknights.tconstruct.tools.ranged.TinkerRangedWeapons;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -63,6 +66,13 @@ public class LongSword extends SwordCore {
   @Override
   public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
     ItemStack itemStackIn = playerIn.getHeldItem(hand);
+    if (hand == EnumHand.MAIN_HAND) {
+      ItemStack offhand = playerIn.getHeldItemOffhand();
+      Item offhandItem = offhand.getItem();
+      if (!offhand.isEmpty() && (offhandItem == TinkerMeleeWeapons.battleSign || offhandItem.isShield(offhand, playerIn) || offhandItem == TinkerRangedWeapons.shuriken)) {
+        return ActionResult.newResult(EnumActionResult.PASS, itemStackIn);
+      }
+    }
     // don't allow free flight when using an elytra, should use fireworks
     if(playerIn.isElytraFlying()) {
       return ActionResult.newResult(EnumActionResult.PASS, itemStackIn);

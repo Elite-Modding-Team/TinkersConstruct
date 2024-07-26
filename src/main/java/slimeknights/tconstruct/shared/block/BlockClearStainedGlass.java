@@ -15,12 +15,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
+import java.util.Random;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import slimeknights.mantle.block.EnumBlock;
 import slimeknights.mantle.block.EnumBlockConnectedTexture;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
 
 public class BlockClearStainedGlass extends EnumBlockConnectedTexture<BlockClearStainedGlass.EnumGlassColor> {
@@ -35,6 +37,20 @@ public class BlockClearStainedGlass extends EnumBlockConnectedTexture<BlockClear
     this.setSoundType(SoundType.GLASS);
 
     this.setCreativeTab(TinkerRegistry.tabGeneral);
+  }
+
+  @Override
+  public int quantityDropped(Random random)
+  {
+    if(Config.clearGlassSilkTouch)
+      return 0;
+    else return 1;
+  }
+
+  @Override
+  protected boolean canSilkHarvest()
+  {
+    return Config.clearGlassSilkTouch;
   }
 
   @Nonnull

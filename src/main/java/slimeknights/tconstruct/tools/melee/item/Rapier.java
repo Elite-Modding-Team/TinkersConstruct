@@ -3,6 +3,7 @@ package slimeknights.tconstruct.tools.melee.item;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
@@ -19,6 +20,7 @@ import slimeknights.tconstruct.library.tools.ToolNBT;
 import slimeknights.tconstruct.shared.client.ParticleEffect;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.melee.TinkerMeleeWeapons;
+import slimeknights.tconstruct.tools.ranged.TinkerRangedWeapons;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -110,7 +112,8 @@ public class Rapier extends SwordCore {
     EnumActionResult result = EnumActionResult.SUCCESS;
     if (hand == EnumHand.MAIN_HAND) {
       ItemStack offhand = playerIn.getHeldItemOffhand();
-      if (!offhand.isEmpty() && (offhand.getItem() == TinkerMeleeWeapons.battleSign || offhand.getItem().isShield(offhand, playerIn))) {
+      Item offhandItem = offhand.getItem();
+      if (!offhand.isEmpty() && (offhandItem == TinkerMeleeWeapons.battleSign || offhandItem.isShield(offhand, playerIn) || offhandItem == TinkerRangedWeapons.shuriken)) {
         result = EnumActionResult.PASS;
       }
     }

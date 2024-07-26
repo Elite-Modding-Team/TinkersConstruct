@@ -29,6 +29,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import slimeknights.tconstruct.common.Sounds;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.capability.projectile.CapabilityTinkerProjectile;
 import slimeknights.tconstruct.library.capability.projectile.TinkerProjectileHandler;
 import slimeknights.tconstruct.library.events.ProjectileEvent;
@@ -383,7 +384,7 @@ public abstract class EntityProjectileBase extends EntityArrow implements IEntit
     if((block == this.inTile && meta == this.inData) || this.getEntityWorld().collidesWithAnyBlock(ON_BLOCK_AABB.offset(this.getPositionVector()))) {
       ++this.ticksInGround;
 
-      if(this.ticksInGround >= 1200) {
+      if(this.ticksInGround >= Config.despawnProjectile) {
         this.setDead();
       }
     }
