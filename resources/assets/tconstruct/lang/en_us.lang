@@ -67,19 +67,19 @@ tile.tconstruct.clear_stained_glass.red.name=Clear Red Stained Glass
 tile.tconstruct.clear_stained_glass.black.name=Clear Black Stained Glass
 
 tile.tconstruct.slime.green.name=Slime Block
-tile.tconstruct.slime.blue.name=Slime Block
-tile.tconstruct.slime.purple.name=Slime Block
+tile.tconstruct.slime.blue.name=Blue Slime Block
+tile.tconstruct.slime.purple.name=Purple Slime Block
 tile.tconstruct.slime.blood.name=Blood Slime Block
-tile.tconstruct.slime.magma.name=Slime Block
-tile.tconstruct.slime.pink.name=Slime Block
+tile.tconstruct.slime.magma.name=Magma Slime Block
+tile.tconstruct.slime.pink.name=Pink Slime Block
 tile.tconstruct.slime.tooltip=Works with pistons!
 
-tile.tconstruct.slime_congealed.green.name=Congealed Slime Block
-tile.tconstruct.slime_congealed.blue.name=Congealed Slime Block
-tile.tconstruct.slime_congealed.purple.name=Congealed Slime Block
-tile.tconstruct.slime_congealed.blood.name=Congealed Bloodblock
-tile.tconstruct.slime_congealed.magma.name=Congealed Slime Block
-tile.tconstruct.slime_congealed.pink.name=Congealed Slime Block
+tile.tconstruct.slime_congealed.green.name=Congealed Green Slime Block
+tile.tconstruct.slime_congealed.blue.name=Congealed Blue Slime Block
+tile.tconstruct.slime_congealed.purple.name=Congealed Purple Slime Block
+tile.tconstruct.slime_congealed.blood.name=Congealed Blood Block
+tile.tconstruct.slime_congealed.magma.name=Congealed Magma Slime Block
+tile.tconstruct.slime_congealed.pink.name=Congealed Pink Slime Block
 tile.tconstruct.slime_congealed.tooltip=Lets you jump really high
 
 tile.tconstruct.slime_dirt.green.name=Green Slimy Dirt
@@ -97,9 +97,9 @@ tile.tconstruct.slime_grass.blood.name=Blood Slimy Grass
 tile.tconstruct.slime_grass.magma.name=Magma Slimy Grass
 tile.tconstruct.slime_grass.tooltip=So soft! Lets you jump higher
 
-tile.tconstruct.slime_leaves.blue.name=Slimy Leaves
-tile.tconstruct.slime_leaves.purple.name=Slimy Leaves
-tile.tconstruct.slime_leaves.orange.name=Slimy Leaves
+tile.tconstruct.slime_leaves.blue.name=Blue Slimy Leaves
+tile.tconstruct.slime_leaves.purple.name=Purple Slimy Leaves
+tile.tconstruct.slime_leaves.orange.name=Magma Slimy Leaves
 
 tile.tconstruct.slime_grass_tall.tall_grass.name=Tall Slimy Grass
 tile.tconstruct.slime_grass_tall.fern.name=Slimy Fern
@@ -192,12 +192,12 @@ tile.tconstruct.rack.item.tooltip=For decoration purpose only
 tile.tconstruct.rack.drying.name=Drying Rack
 tile.tconstruct.rack.drying.tooltip=Used to dry items
 
-tile.tconstruct.slime_channel.green.name=Slime Channel
-tile.tconstruct.slime_channel.blue.name=Slime Channel
-tile.tconstruct.slime_channel.purple.name=Slime Channel
-tile.tconstruct.slime_channel.magma.name=Slime Channel
+tile.tconstruct.slime_channel.green.name=Green Slime Channel
+tile.tconstruct.slime_channel.blue.name=Blue Slime Channel
+tile.tconstruct.slime_channel.purple.name=Purple Slime Channel
+tile.tconstruct.slime_channel.magma.name=Magma Slime Channel
 tile.tconstruct.slime_channel.blood.name=Blood Channel
-tile.tconstruct.slime_channel.pink.name=Slime Channel
+tile.tconstruct.slime_channel.pink.name=Pink Slime Channel
 tile.tconstruct.slime_channel.tooltip=Flows like water, feels like gelatin
 
 tile.tconstruct.dried_clay.clay.name=Dried Clay
@@ -256,11 +256,11 @@ item.tconstruct.book.name=Materials and You
 item.tconstruct.book.tooltip=The book every Tinker needs\nby Skyla
 
 item.tconstruct.edible.bacon.name=Bacon
-item.tconstruct.edible.slimeball_blue.name=Slimeball
-item.tconstruct.edible.slimeball_purple.name=Slimeball
+item.tconstruct.edible.slimeball_blue.name=Blue Slimeball
+item.tconstruct.edible.slimeball_purple.name=Purple Slimeball
 item.tconstruct.edible.slimeball_blood.name=Coagulated Blood
-item.tconstruct.edible.slimeball_magma.name=Slimeball
-item.tconstruct.edible.slimeball_pink.name=Slimeball
+item.tconstruct.edible.slimeball_magma.name=Magma Slimeball
+item.tconstruct.edible.slimeball_pink.name=Pink Slimeball
 item.tconstruct.edible.jerky_beef.name=Beef Jerky
 item.tconstruct.edible.jerky_chicken.name=Chicken Jerky
 item.tconstruct.edible.jerky_pork.name=Bacon Jerky
@@ -271,11 +271,11 @@ item.tconstruct.edible.jerky_salmon.name=Salmon Jerky
 item.tconstruct.edible.jerky_clownfish.name=Clownfish Jerky
 item.tconstruct.edible.jerky_pufferfish.name=Fugu Jerky
 item.tconstruct.edible.jerky_monster.name=Monster Jerky
-item.tconstruct.edible.slimedrop_green.name=Gelatinous Slime Drop
-item.tconstruct.edible.slimedrop_blue.name=Gelatinous Slime Drop
-item.tconstruct.edible.slimedrop_purple.name=Gelatinous Slime Drop
+item.tconstruct.edible.slimedrop_green.name=Green Gelatinous Slime Drop
+item.tconstruct.edible.slimedrop_blue.name=Blue Gelatinous Slime Drop
+item.tconstruct.edible.slimedrop_purple.name=Purple Gelatinous Slime Drop
 item.tconstruct.edible.slimedrop_blood.name=Coagulated Blood Drop
-item.tconstruct.edible.slimedrop_magma.name=Gelatinous Slime Drop
+item.tconstruct.edible.slimedrop_magma.name=Magma Gelatinous Slime Drop
 
 item.tconstruct.materials.seared_brick.name=Seared Brick
 item.tconstruct.materials.mud_brick.name=Mud Brick
@@ -417,19 +417,19 @@ item.tconstruct.bolt_core.name=Bolt Core
 # item.tconstruct.pickaxe.wood=Wooden Pickaxe
 
 # Gadgets
-item.tconstruct.slime_boots.green.name=Slime Boots
-item.tconstruct.slime_boots.blue.name=Slime Boots
-item.tconstruct.slime_boots.purple.name=Slime Boots
-item.tconstruct.slime_boots.blood.name=Congealed Blood Boots
-item.tconstruct.slime_boots.magma.name=Slime Boots
-item.tconstruct.slime_boots.pink.name=Slime Boots
+item.tconstruct.slime_boots.green.name=Green Slime Boots
+item.tconstruct.slime_boots.blue.name=Blue Slime Boots
+item.tconstruct.slime_boots.purple.name=Purple Slime Boots
+item.tconstruct.slime_boots.blood.name=Coagulated Blood Boots
+item.tconstruct.slime_boots.magma.name=Magma Slime Boots
+item.tconstruct.slime_boots.pink.name=Pink Slime Boots
 item.tconstruct.slime_boots.tooltip=Makes you bounce when landing
-item.tconstruct.slimesling.green.name=Slimesling
-item.tconstruct.slimesling.blue.name=Slimesling
-item.tconstruct.slimesling.purple.name=Slimesling
-item.tconstruct.slimesling.blood.name=Congealed Bloodsling
-item.tconstruct.slimesling.magma.name=Slimesling
-item.tconstruct.slimesling.pink.name=Slimesling
+item.tconstruct.slimesling.green.name=Green Slimesling
+item.tconstruct.slimesling.blue.name=Blue Slimesling
+item.tconstruct.slimesling.purple.name=Purple Slimesling
+item.tconstruct.slimesling.blood.name=Coagulated Bloodsling
+item.tconstruct.slimesling.magma.name=Magma Slimesling
+item.tconstruct.slimesling.pink.name=Pink Slimesling
 item.tconstruct.slimesling.tooltip=Charge up, aim low, get flinging!\nUse Slime Boots if you value your life!
 item.tconstruct.piggybackpack.name=Piggybackpack
 item.tconstruct.piggybackpack.tooltip=Right-click mobs to pick them up
@@ -476,6 +476,7 @@ item.tconstruct.spaghetti.cold.tooltip=Well, that's better, but they still taste
 #   Entities    #
 #################
 
+entity.ItemFrame.name=Item Frame
 entity.tconstruct.blueslime.name=Blue Slime
 
 #################
@@ -538,7 +539,8 @@ material.bone.name=Bone
 material.paper.name=Paper
 material.sponge.name=Sponge
 material.firewood.name=Firewood
-material.slime.name=Slime
+material.slime.name=Green Slime
+material.slime.prefix=Slime %s
 material.blueslime.name=Blue Slime
 material.blueslime.prefix=Slime %s
 material.knightslime.name=Knightslime
@@ -558,8 +560,8 @@ material.steel.name=Steel
 material.string.name=String
 material.vine.name=Vines
 material.slimevine_blue.name=Slimevine
-material.slimevine_orange.name=material.slimevine_blue.name
-material.slimevine_purple.name=material.slimevine_blue.name
+material.slimevine_orange.name=Magma Slimevine
+material.slimevine_purple.name=Purple Slimevine
 
 material.blaze.name=Blazerod
 material.reed.name=Reeds
@@ -568,9 +570,9 @@ material.endrod.name=Endrod
 
 material.feather.name=Feather
 material.leaf.name=Leaf
-material.slimeleaf_blue.name=Slimeleaf
-material.slimeleaf_orange.name=material.slimeleaf_blue.name
-material.slimeleaf_purple.name=material.slimeleaf_blue.name
+material.slimeleaf_blue.name=Blue Slimeleaf
+material.slimeleaf_orange.name=Magma Slimeleaf
+material.slimeleaf_purple.name=Purple Slimeleaf
 
 #############
 #   Stats   #
