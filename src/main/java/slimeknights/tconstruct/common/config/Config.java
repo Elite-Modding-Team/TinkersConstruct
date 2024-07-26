@@ -47,6 +47,7 @@ public final class Config {
   public static int despawnProjectile = 1200;
   public static boolean matchVanillaSlimeblock = false;
   public static boolean limitPiggybackpack = false;
+  public static boolean clearGlassSilkTouch = true;
   public static boolean beheadingAffectsWitherSkulls = true;
   private static String[] craftingStationBlacklistArray = new String[] {
       "de.ellpeck.actuallyadditions.mod.tile.TileEntityItemViewer"
@@ -94,6 +95,7 @@ public final class Config {
   public static boolean dumpTextureMap = false; // requires debug module
   public static boolean testIMC = false; // requires debug module
   public static boolean temperatureCelsius = true;
+  public static int minFluidHeight = 3;
 
   /* Config File */
 
@@ -373,6 +375,13 @@ public final class Config {
       temperatureCelsius = prop.getBoolean();
       propOrder.add(prop.getName());
       Util.setTemperaturePref(temperatureCelsius);
+
+      prop = configFile.get(cat, "minFluidHeight", minFluidHeight);
+      prop.setComment("Minimum fluid height to display in the smeltery, great for users that need an easier time to visually identify fluids in the smeltery interface. This can make the smeltery appear more full than it actually is, only touch this if you know what you're doing.");
+      prop.setMinValue(3);
+      prop.setMaxValue(8);
+      minFluidHeight = prop.getInt();
+      propOrder.add(prop.getName());
 
       prop = configFile.get(cat, "enableForgeBucketModel", enableForgeBucketModel);
       prop.setComment("If true, tools will enable the forge bucket model on startup and then turn itself off. This is only there so that a fresh install gets the buckets turned on by default.");

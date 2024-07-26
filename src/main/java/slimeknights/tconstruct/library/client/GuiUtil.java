@@ -23,6 +23,7 @@ import java.util.function.Consumer;
 
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerNetwork;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.library.materials.Material;
@@ -155,7 +156,7 @@ public class GuiUtil {
   }
 
   private static int[] calcLiquidHeights(List<FluidStack> liquids, int capacity, int height) {
-    return SmelteryRenderer.calcLiquidHeights(liquids, capacity, height, 3);
+    return SmelteryRenderer.calcLiquidHeights(liquids, capacity, height, Config.minFluidHeight);
   }
 
   public static void drawGuiTank(SmelteryTank liquids, int x, int y, int w, int height, float zLevel) {
