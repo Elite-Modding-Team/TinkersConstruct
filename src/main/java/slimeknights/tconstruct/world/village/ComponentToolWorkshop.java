@@ -34,7 +34,7 @@ public class ComponentToolWorkshop extends StructureVillagePieces.House1 {
     public ComponentToolWorkshop() {}
 
     public ComponentToolWorkshop(Start villagePiece, int componentType, Random rand, StructureBoundingBox sbb, EnumFacing coordBaseMode) {
-        super();
+        super(villagePiece, componentType, rand, sbb, coordBaseMode);
         this.setCoordBaseMode(coordBaseMode);
         this.boundingBox = sbb;
     }
@@ -61,9 +61,9 @@ public class ComponentToolWorkshop extends StructureVillagePieces.House1 {
             this.boundingBox.offset(0, this.averageGroundLevel - this.boundingBox.maxY + 4, 0);
         }
 
-        IBlockState cobblestone = Blocks.COBBLESTONE.getDefaultState();
-        IBlockState fence = Blocks.OAK_FENCE.getDefaultState();
-        IBlockState planks = Blocks.PLANKS.getDefaultState();
+        IBlockState cobblestone = getBiomeSpecificBlockState(Blocks.COBBLESTONE.getDefaultState());
+        IBlockState fence = getBiomeSpecificBlockState(Blocks.OAK_FENCE.getDefaultState());
+        IBlockState planks = getBiomeSpecificBlockState(Blocks.PLANKS.getDefaultState());
         IBlockState wool = Blocks.WOOL.getDefaultState();
 
         this.fillWithBlocks(world, sbb, 0, 0, 0, 6, 0, 6, cobblestone, cobblestone, false); // Base
@@ -71,7 +71,7 @@ public class ComponentToolWorkshop extends StructureVillagePieces.House1 {
         this.fillWithBlocks(world, sbb, 1, 0, 1, 5, 0, 5, planks, planks, false);
         this.fillWithBlocks(world, sbb, 2, 0, 2, 4, 0, 4, wool, wool, false);
 
-        IBlockState log = Blocks.LOG.getDefaultState();
+        IBlockState log = getBiomeSpecificBlockState(Blocks.LOG.getDefaultState());
 
         this.fillWithBlocks(world, sbb, 0, 1, 0, 0, 4, 0, log, log, false); // Edges
         this.fillWithBlocks(world, sbb, 0, 1, 6, 0, 4, 6, log, log, false);
@@ -100,7 +100,7 @@ public class ComponentToolWorkshop extends StructureVillagePieces.House1 {
 
         this.setBlockState(world, glassPane, 1, 2, 0, sbb); // Glass and door
         this.setBlockState(world, planks, 2, 2, 0, sbb);
-        this.generateDoor(world, sbb, random, 3, 1, 0, this.getCoordBaseMode().rotateY(), Blocks.OAK_DOOR);
+        this.createVillageDoor(world, sbb, random, 3, 1, 0, this.getCoordBaseMode().rotateY());
         this.setBlockState(world, planks, 4, 2, 0, sbb);
         this.setBlockState(world, glassPane, 5, 2, 0, sbb);
 
