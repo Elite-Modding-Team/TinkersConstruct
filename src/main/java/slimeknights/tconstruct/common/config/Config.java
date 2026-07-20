@@ -209,6 +209,7 @@ public final class Config {
   public static int[] slimePoolDimensions = new int[]{-1, 1};
   public static boolean slimePoolDimensionsIsBlacklist = true;
   public static boolean slimePoolsOnlyGenerateInSurfaceWorlds = true;
+  public static boolean genVillageStructures = true;
 
   public static boolean genCobalt = true;
   public static int cobaltRate = 20; // max. cobalt per chunk
@@ -514,6 +515,11 @@ public final class Config {
       prop = configFile.get(cat, "slimePoolsOnlyGenerateInSurfaceWorlds", slimePoolsOnlyGenerateInSurfaceWorlds);
       prop.setComment("If false, slime pools only generate in dimensions which are of type surface. This means they won't generate in modded cave dimensions like the Deep Dark. Note that the name of this property is inverted: It must be set to false to prevent slime pools from generating in non-surface dimensions.");
       slimePoolsOnlyGenerateInSurfaceWorlds = prop.getBoolean();
+
+      // Villages
+      prop = configFile.get(cat, "generateVillageStructures", genVillageStructures);
+      prop.setComment("If true, Smelteries and Tool Workshops will generate in villages.");
+      genVillageStructures = prop.getBoolean();
 
       // Ores
       prop = configFile.get(cat, "genCobalt", genCobalt);

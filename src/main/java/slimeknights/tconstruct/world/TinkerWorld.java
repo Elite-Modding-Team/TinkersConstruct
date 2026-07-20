@@ -1,11 +1,10 @@
 package slimeknights.tconstruct.world;
 
 import com.google.common.eventbus.Subscribe;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.*;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,27 +17,25 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-
 import org.apache.logging.log4j.Logger;
-
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.CommonProxy;
 import slimeknights.tconstruct.common.EntityIDs;
 import slimeknights.tconstruct.common.TinkerPulse;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
-import slimeknights.tconstruct.world.block.BlockSlimeDirt;
-import slimeknights.tconstruct.world.block.BlockSlimeGrass;
-import slimeknights.tconstruct.world.block.BlockSlimeLeaves;
-import slimeknights.tconstruct.world.block.BlockSlimeSapling;
-import slimeknights.tconstruct.world.block.BlockSlimeVine;
-import slimeknights.tconstruct.world.block.BlockTallSlimeGrass;
+import slimeknights.tconstruct.world.block.*;
 import slimeknights.tconstruct.world.entity.EntityBlueSlime;
 import slimeknights.tconstruct.world.entity.EntityPurpleSlime;
 import slimeknights.tconstruct.world.item.ItemBlockLeaves;
+import slimeknights.tconstruct.world.village.VillageSmelteryHandler;
+import slimeknights.tconstruct.world.village.VillageToolWorkshopHandler;
+import slimeknights.tconstruct.world.village.loot.VillageLoot;
 import slimeknights.tconstruct.world.worldgen.MagmaSlimeIslandGenerator;
 import slimeknights.tconstruct.world.worldgen.MagmaSlimePoolGenerator;
 import slimeknights.tconstruct.world.worldgen.SlimeIslandGenerator;
@@ -122,12 +119,17 @@ public class TinkerWorld extends TinkerPulse {
   // PRE-INITIALIZATION
   @Subscribe
   public void preInit(FMLPreInitializationEvent event) {
+    if(Config.genVillageStructures) {
+      VillagerRegistry.instance().registerVillageCreationHandler(new VillageToolWorkshopHandler());
+      VillagerRegistry.instance().registerVillageCreationHandler(new VillageSmelteryHandler());
+    }
     proxy.preInit();
   }
 
   // INITIALIZATION
   @Subscribe
   public void init(FMLInitializationEvent event) {
+    MinecraftForge.EVENT_BUS.register(new VillageLoot());
     proxy.init();
   }
 
