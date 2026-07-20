@@ -87,6 +87,7 @@ public class VillageLoot {
                 TinkerTools.pickHead,
                 TinkerTools.shovelHead,
                 TinkerTools.axeHead,
+                TinkerTools.kamaHead,
                 TinkerTools.binding,
                 TinkerTools.swordBlade,
                 TinkerTools.wideGuard,
@@ -108,8 +109,7 @@ public class VillageLoot {
                 TinkerMaterials.netherrack,
                 TinkerMaterials.slime,
                 TinkerMaterials.paper,
-                TinkerMaterials.copper,
-                TinkerMaterials.bronze,
+                TinkerMaterials.prismarine,
                 TinkerMaterials.blueslime
         };
 

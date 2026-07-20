@@ -27,6 +27,7 @@ import slimeknights.tconstruct.world.village.loot.VillageLoot;
 import java.util.List;
 import java.util.Random;
 
+// TODO: See if the tables are all facing correctly when they generate
 public class ComponentToolWorkshop extends StructureVillagePieces.House1 {
 
     private int averageGroundLevel = -1;
