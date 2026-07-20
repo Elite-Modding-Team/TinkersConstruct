@@ -47,7 +47,7 @@ public class ComponentSmeltery extends StructureVillagePieces.House1 {
             this.boundingBox.offset(0, this.averageGroundLevel - this.boundingBox.maxY + 2, 0);
         }
 
-        IBlockState stoneBricks = Blocks.STONEBRICK.getDefaultState();
+        IBlockState stoneBricks = getBiomeSpecificBlockState(Blocks.STONEBRICK.getDefaultState());
 
         this.fillWithBlocks(world, sbb, 1, 0, 0, 7, 0, 6, stoneBricks, stoneBricks, false); //Base
         this.fillWithBlocks(world, sbb, 0, 0, 1, 0, 0, 5, stoneBricks, stoneBricks, false);
