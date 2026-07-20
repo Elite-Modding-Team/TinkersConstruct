@@ -26,6 +26,7 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.CommonProxy;
 import slimeknights.tconstruct.common.EntityIDs;
 import slimeknights.tconstruct.common.TinkerPulse;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.Util;
 import slimeknights.tconstruct.world.block.*;
@@ -118,8 +119,10 @@ public class TinkerWorld extends TinkerPulse {
   // PRE-INITIALIZATION
   @Subscribe
   public void preInit(FMLPreInitializationEvent event) {
-    VillagerRegistry.instance().registerVillageCreationHandler(new VillageToolWorkshopHandler());
-    VillagerRegistry.instance().registerVillageCreationHandler(new VillageSmelteryHandler());
+    if(Config.genVillageStructures) {
+      VillagerRegistry.instance().registerVillageCreationHandler(new VillageToolWorkshopHandler());
+      VillagerRegistry.instance().registerVillageCreationHandler(new VillageSmelteryHandler());
+    }
     proxy.preInit();
   }
 
