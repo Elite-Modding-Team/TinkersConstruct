@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -16,6 +17,7 @@ import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.common.tileentity.TileCraftingStation;
@@ -290,7 +292,18 @@ public class ComponentToolWorkshop extends StructureVillagePieces.House1 {
 
     @Override
     protected VillagerRegistry.VillagerProfession chooseForgeProfession(int count, VillagerRegistry.VillagerProfession prof) {
-        return super.chooseForgeProfession(count, prof);
+
+        VillagerRegistry.VillagerProfession oreberriesProfession = ForgeRegistries.VILLAGER_PROFESSIONS.getValue(
+                new ResourceLocation("oreberries", "tinker")
+        );
+
+        if(oreberriesProfession == null) {
+            // Fallback to default vanilla Blacksmith profession
+            return ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation("smith"));
+        }
+
+        return oreberriesProfession;
+
     }
 
 }
