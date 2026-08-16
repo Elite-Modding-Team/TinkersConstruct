@@ -119,8 +119,10 @@ public class TinkerWorld extends TinkerPulse {
   // PRE-INITIALIZATION
   @Subscribe
   public void preInit(FMLPreInitializationEvent event) {
-    if(Config.genVillageStructures) {
+    if(Config.genVillageStructures && isToolsLoaded()) {
       VillagerRegistry.instance().registerVillageCreationHandler(new VillageToolWorkshopHandler());
+    }
+    if(Config.genVillageStructures && isSmelteryLoaded()) {
       VillagerRegistry.instance().registerVillageCreationHandler(new VillageSmelteryHandler());
     }
     proxy.preInit();
@@ -129,7 +131,9 @@ public class TinkerWorld extends TinkerPulse {
   // INITIALIZATION
   @Subscribe
   public void init(FMLInitializationEvent event) {
-    MinecraftForge.EVENT_BUS.register(new VillageLoot());
+    if(Config.genVillageStructures && isToolsLoaded()) {
+      MinecraftForge.EVENT_BUS.register(new VillageLoot());
+    }
     proxy.init();
   }
 
