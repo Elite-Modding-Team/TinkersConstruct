@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
@@ -169,6 +170,18 @@ public class ContainerCraftingStation extends ContainerTinkerStation<TileCraftin
   }
 
   @Override
+  public ItemStack slotClick(int slotId, int dragType, ClickType type, EntityPlayer player) {
+    if(type == ClickType.PICKUP && slotId >= 0) {
+      ItemStack stack = handleSideInventoryPickup(slotId, dragType, player);
+      if(stack != null) {
+        return stack;
+      }
+    }
+
+    return super.slotClick(slotId, dragType, type, player);
+  }
+
+  @Override
   protected void slotChangedCraftingGrid(World world, EntityPlayer player, InventoryCrafting inv, InventoryCraftResult result) {
     ItemStack itemstack = ItemStack.EMPTY;
 
@@ -235,8 +248,101 @@ public class ContainerCraftingStation extends ContainerTinkerStation<TileCraftin
   }
 
   @Override
+  protected boolean mergeItemStackRefill(ItemStack stack, int startIndex, int endIndex, boolean useEndIndex) {
+    if(stack.getCount() <= 0) {
+      return false;
+    }
+
+    boolean merged = false;
+    int index = useEndIndex ? endIndex - 1 : startIndex;
+
+    if(stack.isStackable()) {
+      while(stack.getCount() > 0 && (!useEndIndex && index < endIndex || useEndIndex && index >= startIndex)) {
+        Slot slot = this.inventorySlots.get(index);
+        ItemStack slotStack = slot.getStack();
+
+        if(!slotStack.isEmpty()
+           && slotStack.getItem() == stack.getItem()
+           && (!stack.getHasSubtypes() || stack.getMetadata() == slotStack.getMetadata())
+           && ItemStack.areItemStackTagsEqual(stack, slotStack)
+           && this.canMergeSlot(stack, slot)) {
+          int limit = getMergeItemStackLimit(stack, slot);
+          int mergedCount = slotStack.getCount() + stack.getCount();
+
+          if(mergedCount <= limit) {
+            stack.setCount(0);
+            slotStack.setCount(mergedCount);
+            slot.onSlotChanged();
+            merged = true;
+          }
+          else if(slotStack.getCount() < limit) {
+            stack.shrink(limit - slotStack.getCount());
+            slotStack.setCount(limit);
+            slot.onSlotChanged();
+            merged = true;
+          }
+        }
+
+        if(useEndIndex) {
+          --index;
+        }
+        else {
+          ++index;
+        }
+      }
+    }
+
+    return merged;
+  }
+
+  @Override
   public boolean canMergeSlot(ItemStack p_94530_1_, Slot p_94530_2_) {
     return p_94530_2_.inventory != this.craftResult && super.canMergeSlot(p_94530_1_, p_94530_2_);
+  }
+
+  private ItemStack handleSideInventoryPickup(int slotId, int dragType, EntityPlayer player) {
+    Slot slot = this.inventorySlots.get(slotId);
+    if(slot == null || !isSideInventorySlot(slot)) {
+      return null;
+    }
+
+    ItemStack slotStack = slot.getStack();
+    ItemStack heldStack = player.inventory.getItemStack();
+    if(slotStack.isEmpty() || heldStack.isEmpty() || !slot.canTakeStack(player) || !slot.isItemValid(heldStack)) {
+      return null;
+    }
+
+    if(slotStack.getItem() != heldStack.getItem()
+       || slotStack.getMetadata() != heldStack.getMetadata()
+       || !ItemStack.areItemStackTagsEqual(slotStack, heldStack)) {
+      return null;
+    }
+
+    int remainingSpace = slot.getItemStackLimit(heldStack) - slotStack.getCount();
+    if(remainingSpace > 0) {
+      int moved = dragType == 0 ? heldStack.getCount() : 1;
+      if(moved > remainingSpace) {
+        moved = remainingSpace;
+      }
+
+      heldStack.shrink(moved);
+      slotStack.grow(moved);
+    }
+
+    slot.onSlotChanged();
+    return slotStack.copy();
+  }
+
+  private int getMergeItemStackLimit(ItemStack stack, Slot slot) {
+    if(isSideInventorySlot(slot)) {
+      return slot.getItemStackLimit(stack);
+    }
+
+    return Math.min(stack.getMaxStackSize(), slot.getItemStackLimit(stack));
+  }
+
+  private boolean isSideInventorySlot(Slot slot) {
+    return slot.slotNumber >= 0 && this.getSlotContainer(slot.slotNumber) instanceof ContainerSideInventory;
   }
 
   protected TileEntity detectInventory() {
